@@ -1,0 +1,28 @@
+class Solution {
+    public int arithmeticTriplets(int[] nums, int diff) {
+        Set<Integer> set = new HashSet<>();
+        for(int num : nums){
+            set.add(num);
+        }
+        int count = 0;
+        int i = 0;
+        int k = 1;
+        while(k<nums.length){
+            if(nums[k] - nums[i] == 2*diff && set.contains(diff+nums[i])){
+                count++;
+            }
+            if(nums[k] - nums[i] < 2 * diff)
+                ++k;
+            else
+                ++i;
+        }
+
+        return count;
+    }
+}
+
+//i < j < k,
+//nums[j] - nums[i] == diff, and
+//nums[k] - nums[j] == diff
+//nums[k] - nums[i] == 2*diff
+//nums[j] = nums[i] + diff
