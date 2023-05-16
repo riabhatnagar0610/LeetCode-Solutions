@@ -1,0 +1,14 @@
+class Solution {
+    public int hammingDistance(int x, int y) {
+        String xb = Integer.toBinaryString(x);
+        String yb = Integer.toBinaryString(y);
+        String x0 = String.format("%32s", xb).replace(' ','0');
+        String y0 = String.format("%32s", yb).replace(' ','0');
+        int count = 0;
+        for(int i = 0; i<x0.length(); i++){
+            if(x0.charAt(i)!=y0.charAt(i)) count++;
+        }
+
+        return count;
+    }
+}
