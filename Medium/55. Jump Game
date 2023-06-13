@@ -1,0 +1,13 @@
+class Solution {
+    public boolean canJump(int[] nums) {
+        int arrival = 0;
+        if(nums.length<=1){
+            return true;
+        }
+        for(int i = 0; i<=arrival; i++){
+            arrival = Math.max(arrival, i+nums[i]);
+            if(arrival>=nums.length-1) return true;
+        }
+        return false;
+    }
+}
