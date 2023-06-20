@@ -1,0 +1,19 @@
+class Solution {
+    public int[] getAverages(int[] nums, int k) {
+        int[] avg = new int[nums.length];
+        long sum = 0;
+        Arrays.fill(avg, -1);
+        // window size = 2k+1
+        if(nums.length < 2*k+1) return avg;
+        for(int i = 0; i < nums.length; i++){
+            sum += nums[i] ;
+            if(i-(2*k+1) >= 0){
+                sum -= nums[i-(2*k+1)];
+            }
+            if(i >= (2*k+1)-1){
+                avg[i-k] = (int) (sum / (2*k+1));
+            }
+        }
+        return avg;
+    }
+}
