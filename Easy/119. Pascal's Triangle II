@@ -1,0 +1,20 @@
+class Solution {
+    public List<Integer> getRow(int rowIndex) {
+        List<List<Integer>> ans = new ArrayList<List<Integer>>();
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(1); //first row
+        ans.add(list);
+
+        for(int i = 1; i <= rowIndex; i++){
+            ArrayList<Integer> curr = new ArrayList<Integer>();
+            curr.add(1); //first element of row
+            for(int j = 0; j < list.size()-1; j++){
+                curr.add(list.get(j) + list.get(j+1));
+            }
+            curr.add(1); //last element of row
+            ans.add(curr);
+            list = curr;
+        }
+        return ans.get(rowIndex);
+    }
+}
