@@ -1,0 +1,20 @@
+class Solution {
+    public double findMaxAverage(int[] nums, int k) {
+        DecimalFormat df = new DecimalFormat("#.#####");
+        int i = 0;
+        double max = Integer.MIN_VALUE;
+        int j = 0;
+        double sum = 0;
+        while(j<nums.length){
+            sum += nums[j];
+            if(j-i+1 == k){
+                double avg = sum / k;
+                max = Math.max(max, avg);
+                sum = sum - nums[i];
+                i++;
+            }
+            j++;
+        }
+        return Math.round(max * 100000) / 100000.0;
+    }
+}
