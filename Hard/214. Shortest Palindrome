@@ -1,0 +1,45 @@
+class Solution {
+    public String shortestPalindrome(String s) {
+        char[] c = new char[s.length()*2 + 1];
+        int[] lps = new int[c.length];
+        int len = 0;
+        int i = 1;
+        lps[0] = 0;
+        lps[s.length()] = 0;
+        for(int k = 0; k < s.length(); k++){
+            c[k] = s.charAt(k);
+        }
+        c[s.length()] = '#';
+        int index = s.length()-1;
+        for(int j = s.length()+1; j < c.length; j++){
+            c[j] = s.charAt(index);
+            index--;
+        }
+
+        while(i<c.length){
+            if(c[i]==c[len]){
+                len++;
+                lps[i] = len;
+                i++;
+            }
+            else{
+                if(len!=0){
+                    len = lps[len-1];
+                }
+                else{
+                    lps[i] = 0;
+                    i++;
+                }
+            }
+        }
+
+        int rev = lps[lps.length-1];
+        StringBuilder sb = new StringBuilder();
+        String reverse = "";
+        for(int t = s.length()-1; t >= rev; t--){
+            reverse += s.charAt(t);
+        }
+        sb.append(reverse).append(s);
+        return sb.toString();
+    }
+}
