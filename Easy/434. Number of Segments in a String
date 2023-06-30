@@ -1,0 +1,8 @@
+class Solution {
+    public int countSegments(String s) {
+        // if(s.trim().equals("")) return 0;
+        // String[] c = s.trim().split("\\s+");
+        // return c.length;
+        return s.trim().length()==0 ? 0 : s.trim().split("\\s+").length;
+    }
+}
