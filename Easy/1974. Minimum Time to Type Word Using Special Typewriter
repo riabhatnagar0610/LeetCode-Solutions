@@ -1,0 +1,12 @@
+class Solution {
+    public int minTimeToType(String word) {
+        int count = word.length();
+        char initial = 'a';
+        for(int i = 0; i < word.length(); i++){
+            int diff = Math.abs(initial - word.charAt(i));
+            count += Math.min(diff, 26-diff);
+            initial = word.charAt(i);
+        }
+        return count;
+    }
+}
