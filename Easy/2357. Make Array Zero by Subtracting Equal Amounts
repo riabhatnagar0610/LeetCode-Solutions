@@ -1,0 +1,46 @@
+#SOLUTION 1
+class Solution {
+    public int minimumOperations(int[] nums) {
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] != 0) pq.add(nums[i]);
+        }
+        int count = 0;
+        while(!pq.isEmpty()){
+            int min = pq.poll();
+            count++;
+            for(int i = 0; i < nums.length; i++){
+                if(nums[i]!=0){
+                    nums[i] -= min;
+                }
+            }
+            int sum = 0;
+            for(int i = 0; i < nums.length; i++){
+                sum += nums[i];
+            }
+            if(sum==0) return count;
+            pq.clear();
+            for(int i = 0; i < nums.length; i++){
+                if(nums[i]==0) continue;
+                else{
+                    pq.add(nums[i]);
+                }
+            }
+        }
+        return count;
+    }
+}
+
+#SOLUTION 2
+class Solution {
+    public int minimumOperations(int[] nums) {
+        Set<Integer> ans=new HashSet<>();
+        for(int i : nums){
+            ans.add(i);
+        }
+        if(ans.contains(0))
+            return ans.size()-1;
+        else
+            return ans.size();
+    }
+}
