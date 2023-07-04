@@ -1,0 +1,26 @@
+class Solution {
+    public int kItemsWithMaximumSum(int numOnes, int numZeros, int numNegOnes, int k) {
+        if(k==0) return 0;
+        int sum = 0;
+        int count = 0;
+        while(numOnes>0){
+            sum += 1;
+            count++;
+            numOnes--;
+            if(count==k) return sum;
+        }
+        while(numZeros>0){
+            sum += 0;
+            count++;
+            numZeros--;
+            if(count==k) return sum;
+        }
+        while(numNegOnes>0){
+            sum += -1;
+            count++;
+            numNegOnes--;
+            if(count==k) return sum;
+        }
+        return sum;
+    }
+}
