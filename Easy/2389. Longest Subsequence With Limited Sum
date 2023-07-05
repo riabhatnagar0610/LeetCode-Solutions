@@ -1,0 +1,22 @@
+class Solution {
+    public int[] answerQueries(int[] nums, int[] queries) {
+        int n = nums.length;
+        int m = queries.length;
+        int[] ans = new int[m];
+        Arrays.sort(nums);
+        int sum = 0;
+        for(int num : nums){
+            sum += num;
+        }
+        for(int i = 0; i < m; i++){
+            int j = n-1;
+            int curr = sum;
+            while(j >= 0 && curr > queries[i]){
+                curr -= nums[j];
+                j--;
+            }
+            ans[i] = j+1;
+        }
+        return ans;
+    }
+}
