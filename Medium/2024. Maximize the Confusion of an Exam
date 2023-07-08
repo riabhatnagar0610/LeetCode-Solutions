@@ -1,0 +1,26 @@
+class Solution {
+    public int maxConsecutiveAnswers(String answerKey, int k) {
+        int i = 0;
+        int j = 0;
+        int countT = 0;
+        int countF = 0;
+        int max = Integer.MIN_VALUE;
+        char[] arr = answerKey.toCharArray();
+        while(j < arr.length){
+            if(arr[j]=='T'){
+                countT++;
+            }
+            else{
+                countF++;
+            }
+            while(Math.min(countT, countF) > k){
+                if(arr[i]=='F') countF--;
+                else countT--;
+                i++;
+            }
+            max = Math.max(max, countF+countT);
+            j++;
+        }
+        return max;
+    }
+}
