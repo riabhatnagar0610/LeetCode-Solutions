@@ -1,0 +1,23 @@
+class Solution {
+    public List<String> letterCombinations(String digits) {
+        String[] key = {"abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+        List<String> ans = new ArrayList<>();
+        if(digits.length()==0 || digits==null) return ans;
+        StringBuilder combination = new StringBuilder();
+        backtrack(ans, combination, key, digits, 0);
+        return ans;
+    }
+    private void backtrack(List<String> ans, StringBuilder combination, String[] key, String digits, int index){
+        if(index==digits.length()){
+            ans.add(combination.toString());
+        }
+        else{
+            String letters = key[digits.charAt(index) - '2']; //to get index 0 of key as letters are assigned from num2
+            for(char l : letters.toCharArray()){
+                combination.append(l);
+                backtrack(ans, combination, key, digits, index+1);
+                combination.deleteCharAt(combination.length()-1);
+            }
+        }
+    }
+}
