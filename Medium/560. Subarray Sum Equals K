@@ -1,0 +1,16 @@
+class Solution {
+    public int subarraySum(int[] nums, int k) {
+        int ans = 0;
+        //prefix sum
+        int[] dp = new int[nums.length+1];
+        for(int i = 1; i < dp.length; i++){
+            dp[i] = dp[i-1] + nums[i-1];
+        }
+        for(int i = 0; i <= nums.length; i++){
+            for(int j = i+1; j <= nums.length; j++){
+                if(dp[j]-dp[i]==k) ans++;
+            }
+        }
+        return ans;
+    }
+}
