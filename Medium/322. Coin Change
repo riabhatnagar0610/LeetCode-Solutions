@@ -1,0 +1,31 @@
+//recursion and memoization gives stack overflow
+//tabulation is the optimized one
+class Solution {
+    public int coinChange(int[] coins, int amount) {
+        if(amount==0) return 0;
+        int n = coins.length;
+        if(n==0) return -1;
+        // Arrays.sort(coins);
+        int[][] dp = new int[n][amount+1];
+        for(int t = 0; t <= amount; t++){
+            if(dp[0][t]==0){
+                if(t%coins[0]==0){
+                    dp[0][t] = t/coins[0];
+                }
+                else dp[0][t] = 100000;
+            }
+        }
+        for(int i = 1; i < n; i++){
+            for(int t = 0; t <= amount; t++){
+                int nottake = 0 + dp[i-1][t];
+                int take = 100000;
+                if(t >= coins[i]){
+                    take = 1 + dp[i][t-coins[i]];
+                }
+                dp[i][t] = Math.min(take, nottake); 
+            }
+        }
+        int ans = dp[n-1][amount];
+        return ans >= 100000 ? -1 : ans;
+    }
+}
