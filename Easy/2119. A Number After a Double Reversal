@@ -1,3 +1,4 @@
+#Solution 1
 class Solution {
     public boolean isSameAfterReversals(int num) {
         int temp = num;
@@ -12,7 +13,14 @@ class Solution {
             rev2 = rev2*10 + temp%10;
             temp /= 10;
         }
-
         return rev2==num;
+    }
+}
+
+#Solution 2
+class Solution {
+    public boolean isSameAfterReversals(int num) {
+        if(num%10!=0 || num<10) return true;
+        else return false;
     }
 }
