@@ -1,0 +1,24 @@
+//recursion gives tle
+class Solution {
+    int max = 0;
+    public int maximalSquare(char[][] matrix) {
+        int[][] dp = new int[matrix.length+1][matrix[0].length+1];
+        for(int[] row : dp) Arrays.fill(row, -1);
+        solve(matrix, 0, 0, dp);
+        return max*max;
+    }
+    public int solve(char[][] matrix, int i, int j, int[][] dp){
+        if(i >= matrix.length || j >= matrix[i].length) return 0;
+        if(dp[i][j] != -1) return dp[i][j];
+        int right = solve(matrix, i, j+1, dp);
+        int down = solve(matrix, i+1, j, dp);
+        int diag = solve(matrix, i+1, j+1, dp);
+        int ans = 0;
+        if(matrix[i][j]=='1'){
+            ans = 1 + Math.min(diag, Math.min(right, down));
+            max = Math.max(max, ans);
+        }
+        else return dp[i][j] = 0;
+        return dp[i][j] = ans;
+    }
+}
