@@ -1,0 +1,13 @@
+class Solution {
+    public List<Integer> lexicalOrder(int n) {
+        List<Integer> ans = new ArrayList<>();
+        solve(1, n, ans);
+        return ans;
+    }
+    public void solve(int i, int n, List<Integer> ans){
+        if(i>n) return;
+        ans.add(i);
+        solve(i*10, n, ans);
+        if(i%10 != 9) solve(i+1, n, ans);
+    }
+}
