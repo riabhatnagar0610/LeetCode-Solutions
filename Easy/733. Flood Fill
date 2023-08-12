@@ -1,0 +1,18 @@
+class Solution {
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+        if(image[sr][sc] == color) return image;
+        solve(image, sr, sc, color, image[sr][sc]);
+        return image;
+    }
+    public void solve(int[][] image,  int r, int c, int color, int curr){
+        int m = image.length-1;
+        int n = image[0].length-1;
+        if(r < 0 || r > m || c < 0 || c > n) return;
+        if(curr != image[r][c]) return;
+        image[r][c] = color;
+        solve(image, r+1, c, color, curr);
+        solve(image, r-1, c, color, curr);
+        solve(image, r, c-1, color, curr);
+        solve(image, r, c+1, color, curr);
+    }
+}
