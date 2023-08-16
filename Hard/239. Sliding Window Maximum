@@ -1,0 +1,33 @@
+class Solution {
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        int n = nums.length; 
+        PriorityQueue<Pair<Integer, Integer>> pq = new PriorityQueue<>((a,b) -> b.getKey()-a.getKey());
+        int [] res = new int[n-k+1];
+        int index = 0;
+        
+        // i represents left window boundary and j represents right window boundary.
+        int i = 0, j = 0;
+        
+        while(j < nums.length){
+            // Add num along with index
+            pq.add(new Pair(nums[j],j));
+            
+            if(j-i+1 < k){
+                j++;
+            }
+            else if(j-i+1 == k){  // window size == k
+                
+                // remove maximum num which lies outside window i.e having index less than left window boundary (i)  
+                while(pq.peek().getValue() < i){
+                    pq.poll();
+                }
+                
+                res[index++] = pq.peek().getKey();
+                i++;
+                j++;
+            }
+        }
+        return res;
+    
+    }
+}
