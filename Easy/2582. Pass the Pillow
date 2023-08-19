@@ -1,0 +1,17 @@
+class Solution {
+    public int passThePillow(int n, int time) {
+        int curr = 0;
+        int i = 1;
+        while(curr < time){
+            while(i < n && curr < time){
+                i += 1;
+                curr++;
+            }
+            while(i > 1 && curr < time){
+                i -= 1;
+                curr++;
+            }
+        }
+        return i;
+    }
+}
